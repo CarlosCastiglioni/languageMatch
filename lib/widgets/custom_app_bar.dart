@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:language_match/shared/themes/app_colors.dart';
+import 'package:match_code/shared/themes/app_colors.dart';
 
 import '../shared/themes/app_text_styles.dart';
 
@@ -42,8 +42,8 @@ class CustomAppBar extends StatelessWidget {
               ),
               trailing: photo != null
                   ? Container(
-                      height: 48,
-                      width: 48,
+                      height: 50,
+                      width: 50,
                       decoration: BoxDecoration(
                           color: AppColors.background,
                           borderRadius: BorderRadius.circular(5),

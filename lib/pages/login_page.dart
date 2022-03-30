@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:language_match/shared/themes/app_colors.dart';
-import '../../shared/themes/app_images.dart';
+import 'package:match_code/shared/themes/app_colors.dart';
 import '../controllers/login_controller.dart';
 import '../shared/themes/app_text_styles.dart';
 import '../widgets/social_login_button.dart';
@@ -26,11 +25,11 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             Container(
               width: size.width,
-              height: size.height * 0.36,
+              height: size.height * 0.50,
               color: AppColors.primary,
             ),
             Positioned(
-              bottom: size.height * 0.25,
+              bottom: size.height * 0.18,
               left: 0,
               right: 0,
               child: Column(
@@ -41,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding:
                         const EdgeInsets.only(top: 30, left: 70.0, right: 70),
                     child: Text(
-                      'Mantenha seu currículo atualizado',
+                      'Match Code\n\nConecte-se aos códigos!',
                       textAlign: TextAlign.center,
                       style: TextStyles.titleHome,
                     ),

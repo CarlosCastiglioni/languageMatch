@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:language_match/pages/home_page.dart';
+import 'package:match_code/pages/home_page.dart';
 
 import 'app_widget.dart';
 

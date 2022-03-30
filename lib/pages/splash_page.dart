@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:language_match/shared/themes/app_colors.dart';
+import 'package:match_code/shared/themes/app_colors.dart';
 
 import '../shared/auth/auth_controller.dart';
 import '../shared/themes/app_images.dart';

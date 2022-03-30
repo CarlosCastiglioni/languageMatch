@@ -1,21 +1,21 @@
-import 'package:language_match/models/language.dart';
+import 'package:match_code/models/language.dart';
 
 class LanguagesRepository {
   static List<Language> table = [
     Language(
-      icon: "images/dart.png",
+      icon: "assets/images/dart.png",
       name: "Dart",
     ),
     Language(
-      icon: "images/javascript.png",
+      icon: "assets/images/javascript.png",
       name: "JavaScript",
     ),
     Language(
-      icon: "images/python.png",
+      icon: "assets/images/python.png",
       name: "Python",
     ),
     Language(
-      icon: "images/java.png",
+      icon: "assets/images/java.png",
       name: "Java",
     ),
   ];

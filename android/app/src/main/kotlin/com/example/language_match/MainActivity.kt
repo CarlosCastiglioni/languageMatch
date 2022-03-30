@@ -1,4 +1,4 @@
-package com.example.language_match
+package com.example.match_code
 
 import io.flutter.embedding.android.FlutterActivity
 

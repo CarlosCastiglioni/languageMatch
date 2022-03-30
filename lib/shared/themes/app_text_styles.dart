@@ -24,6 +24,11 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.grey,
   );
+  static final subtitle = GoogleFonts.inter(
+    fontSize: 15,
+    fontWeight: FontWeight.w500,
+    color: AppColors.primary,
+  );
   static final captionShape = GoogleFonts.inter(
     fontSize: 13,
     fontWeight: FontWeight.w400,

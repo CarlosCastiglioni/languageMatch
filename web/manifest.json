@@ -1,6 +1,6 @@
 {
-    "name": "language_match",
-    "short_name": "language_match",
+    "name": "match_code",
+    "short_name": "match_code",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

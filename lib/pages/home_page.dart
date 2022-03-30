@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:language_match/pages/accepted_page.dart';
-import 'package:language_match/pages/lost_page.dart';
-import 'package:language_match/pages/pending_page.dart';
-import 'package:language_match/pages/profile_page.dart';
-import 'package:language_match/pages/refused_page.dart';
-import 'package:language_match/shared/themes/app_colors.dart';
+import 'package:match_code/pages/accepted_page.dart';
+import 'package:match_code/pages/lost_page.dart';
+import 'package:match_code/pages/pending_page.dart';
+import 'package:match_code/pages/profile_page.dart';
+import 'package:match_code/pages/refused_page.dart';
+import 'package:match_code/shared/themes/app_colors.dart';
 
 import '../models/user_model.dart';
 

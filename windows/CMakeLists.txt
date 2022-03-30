@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(language_match LANGUAGES CXX)
+project(match_code LANGUAGES CXX)
 
-set(BINARY_NAME "language_match")
+set(BINARY_NAME "match_code")
 
 cmake_policy(SET CMP0063 NEW)
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:language_match/widgets/custom_app_bar.dart';
+import 'package:match_code/repository/languages_repository.dart';
+import 'package:match_code/widgets/custom_app_bar.dart';
 
 import '../models/user_model.dart';
 import '../shared/themes/app_text_styles.dart';
@@ -13,6 +14,8 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final languages = LanguagesRepository.table;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +25,25 @@ class _ProfilePageState extends State<ProfilePage> {
             title1: "Olá, ",
             title2: widget.user.name,
             photo: widget.user.photoURL!,
-            subtitle: "Bem vindo ao Language Match!"),
+            subtitle: "Veja abaixo as linguagens disponíveis"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: languages.length > 0
+            ? ListView.separated(
+                scrollDirection: Axis.vertical,
+                itemCount: languages.length,
+                separatorBuilder: (_, __) => Divider(),
+                itemBuilder: (BuildContext context, int language) {
+                  return ListTile(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(12))),
+                    leading: Image.asset(languages[language].icon),
+                    title: Text(languages[language].name),
+                  );
+                },
+              )
+            : Text("Não há registros"),
       ),
     );
   }
