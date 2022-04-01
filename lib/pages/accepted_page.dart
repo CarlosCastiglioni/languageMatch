@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:match_code/widgets/custom_app_bar.dart';
 
 import '../repository/languages_repository.dart';
+import '../widgets/custom_app_bar.dart';
 
-class AcceptedPage extends StatefulWidget {
-  const AcceptedPage({Key? key}) : super(key: key);
-
-  @override
-  State<AcceptedPage> createState() => _AcceptedPageState();
-}
-
-class _AcceptedPageState extends State<AcceptedPage> {
+class AcceptedPage extends StatelessWidget {
+  AcceptedPage({Key? key}) : super(key: key);
   final languages = LanguagesRepository.table;
+
   @override
   Widget build(BuildContext context) {
+    final acceptedList = [];
+    for (var lng in languages) {
+      if (lng.state == "Accepted") {
+        acceptedList.add(lng);
+      }
+    }
     return Scaffold(
       appBar: PreferredSize(
         child: CustomAppBar(
@@ -25,14 +26,14 @@ class _AcceptedPageState extends State<AcceptedPage> {
         padding: const EdgeInsets.all(8.0),
         child: ListView.separated(
           scrollDirection: Axis.vertical,
-          itemCount: languages.length,
+          itemCount: acceptedList.length,
           separatorBuilder: (_, __) => Divider(),
           itemBuilder: (BuildContext context, int language) {
             return ListTile(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(12))),
-              leading: Image.asset(languages[language].icon),
-              title: Text(languages[language].name),
+              leading: Image.asset(acceptedList[language].icon),
+              title: Text(acceptedList[language].name),
             );
           },
         ),
