@@ -16,11 +16,3 @@ class MatchTimerStartState extends MatchTimerState {
 class MatchTimerCounterState extends MatchTimerState {
   const MatchTimerCounterState(int duration) : super(duration);
 }
-
-
-// Inicial - 30 segundos para chamar a linguagem
-// Contagem - 10 segundos
-
-// se não escolher, vai para perdida - Resetar
-// se aceitar vai para aceita - Resetar
-// se rejeitar vai para rejeitado - Resetar
