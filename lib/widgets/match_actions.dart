@@ -39,7 +39,7 @@ class MatchActions extends StatelessWidget {
                         style: TextStyles.buttonGrey,
                       )
                     ],
-                    if (state is MatchTimerCounterState &&
+                    if (state is MatchTimerStartState &&
                         pendingList.isNotEmpty) ...[
                       Text(
                         pendingList[language!].name,
@@ -83,7 +83,7 @@ class MatchActions extends StatelessWidget {
                         ],
                       )
                     ],
-                    if (state is MatchTimerStartState &&
+                    if (state is MatchTimerCounterState &&
                         pendingList.isNotEmpty) ...[
                       Text(
                         "Não há linguagens pendentes!",

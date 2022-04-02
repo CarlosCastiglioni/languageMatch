@@ -34,4 +34,9 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.background,
   );
+  static final logout = GoogleFonts.inter(
+    fontSize: 13,
+    fontWeight: FontWeight.w400,
+    color: AppColors.delete,
+  );
 }

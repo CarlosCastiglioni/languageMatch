@@ -1,26 +1,27 @@
 import 'package:match_code/models/language.dart';
+import 'package:match_code/shared/themes/app_images.dart';
 
 class LanguagesRepository {
   static List<Language> table = [
     Language(
-        icon: "assets/images/dart.png",
+        icon: AppImages.dartIcon,
         name: "Dart",
         state: "Pending",
-        image: 'assets/images/dartImg.png'),
+        image: AppImages.dartImg),
     Language(
-        icon: "assets/images/javascript.png",
+        icon: AppImages.javascriptIcon,
         name: "JavaScript",
         state: "Pending",
-        image: 'assets/images/javascriptImg.png'),
+        image: AppImages.javascriptImg),
     Language(
-        icon: "assets/images/python.png",
+        icon: AppImages.pythonIcon,
         name: "Python",
         state: "Pending",
-        image: 'assets/images/pythonImg.png'),
+        image: AppImages.pythonImg),
     Language(
-        icon: "assets/images/java.png",
+        icon: AppImages.javaIcon,
         name: "Java",
         state: "Pending",
-        image: 'assets/images/javaImg.png'),
+        image: AppImages.javaImg),
   ];
 }

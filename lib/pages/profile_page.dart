@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:match_code/repository/languages_repository.dart';
 import 'package:match_code/widgets/custom_app_bar.dart';
-
 import '../models/user_model.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -19,12 +18,12 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(170),
+        preferredSize: const Size.fromHeight(180),
         child: CustomAppBar(
             title1: "Olá, ",
             title2: widget.user.name,
             photo: widget.user.photoURL!,
-            subtitle: "Veja abaixo as linguagens disponíveis"),
+            subtitle: "Veja abaixo todas as linguagens disponíveis"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -32,7 +31,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ? ListView.separated(
                 scrollDirection: Axis.vertical,
                 itemCount: languages.length,
-                separatorBuilder: (_, __) => Divider(),
+                separatorBuilder: (_, __) => const Divider(),
                 itemBuilder: (BuildContext context, int language) {
                   return ListTile(
                     shape: const RoundedRectangleBorder(

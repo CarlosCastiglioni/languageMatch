@@ -20,7 +20,7 @@ class AcceptedPage extends StatelessWidget {
         child: CustomAppBar(
             title1: "Solicitações Aceitas",
             subtitle: "Veja abaixo suas solicitações aceitas"),
-        preferredSize: Size.fromHeight(130),
+        preferredSize: const Size.fromHeight(180),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -30,7 +30,7 @@ class AcceptedPage extends StatelessWidget {
           separatorBuilder: (_, __) => Divider(),
           itemBuilder: (BuildContext context, int language) {
             return ListTile(
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(12))),
               leading: Image.asset(acceptedList[language].icon),
               title: Text(acceptedList[language].name),

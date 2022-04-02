@@ -20,7 +20,7 @@ class LostPage extends StatelessWidget {
           child: CustomAppBar(
               title1: "Solicitações Perdidas",
               subtitle: "Veja abaixo suas solicitações perdidas"),
-          preferredSize: const Size.fromHeight(130),
+          preferredSize: const Size.fromHeight(180),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),

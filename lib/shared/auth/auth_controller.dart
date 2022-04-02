@@ -23,6 +23,13 @@ class AuthController {
     return;
   }
 
+  Future<void> logout(BuildContext context) async {
+    final instance = await SharedPreferences.getInstance();
+    await instance.remove("user");
+    Navigator.pushReplacementNamed(context, "/login");
+    return;
+  }
+
   Future<void> currentUser(BuildContext context) async {
     final instance = await SharedPreferences.getInstance();
     await Future.delayed(Duration(seconds: 2));

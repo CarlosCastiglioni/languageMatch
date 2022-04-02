@@ -5,6 +5,7 @@ import '../models/user_model.dart';
 
 class LoginController {
   final authController = AuthController();
+
   Future<void> googleSignIn(BuildContext context) async {
     GoogleSignIn _googleSignIn = GoogleSignIn(
       scopes: [
@@ -21,5 +22,9 @@ class LoginController {
     } catch (error) {
       authController.setUser(context, null);
     }
+  }
+
+  Future<void> signOut(BuildContext context) async {
+    authController.logout(context);
   }
 }
