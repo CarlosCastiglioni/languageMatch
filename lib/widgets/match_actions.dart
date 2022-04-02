@@ -43,9 +43,12 @@ class MatchActions extends StatelessWidget {
                         pendingList.isNotEmpty) ...[
                       Text(
                         pendingList[language!].name,
-                        style: TextStyles.buttonGrey,
+                        style: TextStyles.titleHome,
                       ),
-                      Image.asset(pendingList[language].icon),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Image.asset(pendingList[language].image),
                       const SizedBox(
                         height: 15,
                       ),
