@@ -13,8 +13,8 @@ class MatchTimerBloc extends Bloc<MatchTimerEvent, MatchTimerState> {
   static const int _duration = 3;
   late dynamic lostLanguage = 0;
   late int lng = 0;
-  final languageList = [];
-  final languages = LanguagesRepository.table;
+  late List languageList = [];
+  List languages = LanguagesRepository.table;
   StreamSubscription<int>? _tickerSubscription;
 
   MatchTimerBloc({required Ticker ticker})
@@ -32,6 +32,15 @@ class MatchTimerBloc extends Bloc<MatchTimerEvent, MatchTimerState> {
   }
 
   void _onStart(MatchTimerStartEvent event, Emitter<MatchTimerState> emit) {
+    languageList = languages
+        .where(
+          (element) => element.state == "Pending",
+        )
+        .toList();
+    final random = Random();
+    final language =
+        languageList.isNotEmpty ? random.nextInt(languageList.length) : 0;
+    lng = language;
     emit(const MatchTimerStartState(_duration));
     _tickerSubscription?.cancel();
     _tickerSubscription = _ticker
@@ -48,15 +57,6 @@ class MatchTimerBloc extends Bloc<MatchTimerEvent, MatchTimerState> {
   }
 
   void _onTicked(MatchTimerTickedEvent event, Emitter<MatchTimerState> emit) {
-    final random = Random();
-    final language =
-        languageList.isNotEmpty ? random.nextInt(languageList.length) : 0;
-    lng = language;
-    for (var lng in languages) {
-      if (lng.state == "Pending") {
-        languageList.add(lng);
-      }
-    }
     if (event.duration == 0 &&
         state is MatchTimerStartState &&
         lostLanguage != null) {

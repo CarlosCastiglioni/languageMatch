@@ -9,12 +9,10 @@ class RefusedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = BlocProvider.of<MatchTimerBloc>(context);
-    final refusedList = [];
-    for (var lng in controller.languages) {
-      if (lng.state == "Refused") {
-        refusedList.add(lng);
-      }
-    }
+    final refusedList = controller.languages
+        .where((element) => element.state == "Refused")
+        .toList();
+
     return Scaffold(
       appBar: PreferredSize(
         child: CustomAppBar(

@@ -10,12 +10,10 @@ class LostPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = BlocProvider.of<MatchTimerBloc>(context);
-    final lostList = [];
-    for (var lng in controller.languages) {
-      if (lng.state == "Lost") {
-        lostList.add(lng);
-      }
-    }
+    final lostList = controller.languages
+        .where((element) => element.state == "Lost")
+        .toList();
+
     return Scaffold(
         appBar: PreferredSize(
           child: CustomAppBar(

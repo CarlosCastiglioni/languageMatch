@@ -54,9 +54,9 @@ class _HomePageState extends State<HomePage> {
         children: [
           ProfilePage(user: widget.user!),
           PendingPage(),
-          AcceptedPage(),
-          RefusedPage(),
-          LostPage()
+          const AcceptedPage(),
+          const RefusedPage(),
+          const LostPage()
         ],
       ),
       bottomNavigationBar: NavigationBarTheme(
