@@ -10,7 +10,8 @@ import '../../repository/languages_repository.dart';
 
 class MatchTimerBloc extends Bloc<MatchTimerEvent, MatchTimerState> {
   final Ticker _ticker;
-  static const int _duration = 3;
+  static const int _startDuration = 60;
+  static const int _counterDuration = 30;
   late dynamic lostLanguage = 0;
   late int lng = 0;
   late List languageList = [];
@@ -19,7 +20,7 @@ class MatchTimerBloc extends Bloc<MatchTimerEvent, MatchTimerState> {
 
   MatchTimerBloc({required Ticker ticker})
       : _ticker = ticker,
-        super(const MatchTimerStartState(_duration)) {
+        super(const MatchTimerStartState(_startDuration)) {
     on<MatchTimerStartEvent>(_onStart);
     on<MatchTimerCounterEvent>(_onCount);
     on<MatchTimerTickedEvent>(_onTicked);
@@ -41,18 +42,18 @@ class MatchTimerBloc extends Bloc<MatchTimerEvent, MatchTimerState> {
     final language =
         languageList.isNotEmpty ? random.nextInt(languageList.length) : 0;
     lng = language;
-    emit(const MatchTimerStartState(_duration));
+    emit(const MatchTimerStartState(_startDuration));
     _tickerSubscription?.cancel();
     _tickerSubscription = _ticker
-        .tick(ticks: 3)
+        .tick(ticks: _startDuration)
         .listen((duration) => add(MatchTimerTickedEvent(duration: duration)));
   }
 
   void _onCount(MatchTimerCounterEvent event, Emitter<MatchTimerState> emit) {
-    emit(const MatchTimerCounterState(_duration));
+    emit(const MatchTimerCounterState(_counterDuration));
     _tickerSubscription?.cancel();
     _tickerSubscription = _ticker
-        .tick(ticks: 1)
+        .tick(ticks: _counterDuration)
         .listen((duration) => add(MatchTimerTickedEvent(duration: duration)));
   }
 
@@ -60,15 +61,16 @@ class MatchTimerBloc extends Bloc<MatchTimerEvent, MatchTimerState> {
     if (event.duration == 0 &&
         state is MatchTimerStartState &&
         lostLanguage != null) {
-      _tickerSubscription = _ticker.tick(ticks: 5).listen(
-          (duration) => add(MatchTimerCounterEvent(duration: duration)));
+      _tickerSubscription = _ticker.tick(ticks: _startDuration).listen(
+          (duration) => add(
+              const MatchTimerCounterEvent(counterDuration: _counterDuration)));
     } else if (event.duration == 0 &&
         state is MatchTimerCounterState &&
         lostLanguage != null) {
       lostLanguage.state = "Lost";
-      _tickerSubscription = _ticker
-          .tick(ticks: 3)
-          .listen((duration) => add(MatchTimerStartEvent(duration: duration)));
+      _tickerSubscription = _ticker.tick(ticks: _counterDuration).listen(
+          (duration) =>
+              add(const MatchTimerStartEvent(startDuration: _startDuration)));
     } else if (event.duration == 0 && languageList.isEmpty) {
       _tickerSubscription?.cancel();
     }

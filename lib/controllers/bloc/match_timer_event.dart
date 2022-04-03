@@ -8,15 +8,15 @@ abstract class MatchTimerEvent extends Equatable {
 }
 
 class MatchTimerStartEvent extends MatchTimerEvent {
-  final int duration;
+  final int startDuration;
 
-  const MatchTimerStartEvent({required this.duration});
+  const MatchTimerStartEvent({required this.startDuration});
 }
 
 class MatchTimerCounterEvent extends MatchTimerEvent {
-  final int duration;
+  final int counterDuration;
 
-  const MatchTimerCounterEvent({required this.duration});
+  const MatchTimerCounterEvent({required this.counterDuration});
 }
 
 class MatchTimerTickedEvent extends MatchTimerEvent {

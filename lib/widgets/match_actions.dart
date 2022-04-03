@@ -14,6 +14,8 @@ class MatchActions extends StatefulWidget {
   State<MatchActions> createState() => _MatchActionsState();
 }
 
+const int _startDuration = 60;
+
 class _MatchActionsState extends State<MatchActions> {
   @override
   Widget build(BuildContext context) {
@@ -63,7 +65,8 @@ class _MatchActionsState extends State<MatchActions> {
                                 }
                               }
                               context.read<MatchTimerBloc>().add(
-                                  const MatchTimerStartEvent(duration: 30));
+                                  const MatchTimerStartEvent(
+                                      startDuration: _startDuration));
                             },
                             backgroundColor: AppColors.primary,
                           ),
@@ -82,7 +85,8 @@ class _MatchActionsState extends State<MatchActions> {
                                 }
                               }
                               context.read<MatchTimerBloc>().add(
-                                  const MatchTimerStartEvent(duration: 30));
+                                  const MatchTimerStartEvent(
+                                      startDuration: _startDuration));
                             },
                             backgroundColor: AppColors.delete,
                           ),

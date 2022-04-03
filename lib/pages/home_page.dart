@@ -22,6 +22,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int currentPage = 0;
   late PageController pc;
+  static const int _startDuration = 60;
 
   @override
   void initState() {
@@ -37,7 +38,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   void setTimer(BuildContext context) {
-    context.read<MatchTimerBloc>().add(const MatchTimerStartEvent(duration: 3));
+    context
+        .read<MatchTimerBloc>()
+        .add(const MatchTimerStartEvent(startDuration: _startDuration));
   }
 
   @override
