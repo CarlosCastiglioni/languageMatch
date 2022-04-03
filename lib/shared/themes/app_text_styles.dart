@@ -14,6 +14,16 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.background,
   );
+  static final titleRegularGrey = GoogleFonts.lexendDeca(
+    fontSize: 25,
+    fontWeight: FontWeight.w400,
+    color: AppColors.grey,
+  );
+  static final languageName = GoogleFonts.lexendDeca(
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+    color: AppColors.primary,
+  );
   static final titleBoldBackground = GoogleFonts.lexendDeca(
     fontSize: 20,
     fontWeight: FontWeight.w600,

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:match_code/controllers/bloc/match_timer_bloc.dart';
 import 'package:match_code/controllers/bloc/match_timer_event.dart';
 import 'package:match_code/controllers/bloc/match_timer_state.dart';
+import 'package:match_code/widgets/confirmation_dialog.dart';
 import '../shared/themes/app_colors.dart';
 import '../shared/themes/app_text_styles.dart';
 
@@ -55,7 +56,16 @@ class _MatchActionsState extends State<MatchActions> {
                         children: [
                           FloatingActionButton.extended(
                             label: const Text("Aceitar"),
-                            onPressed: () {
+                            onPressed: () async {
+                              await showDialog(
+                                  context: context,
+                                  builder: (_) => ConfirmationDialog(
+                                        title: "Você deu match com:",
+                                        name: controller
+                                            .languageList[controller.lng].name,
+                                        image: controller
+                                            .languageList[controller.lng].image,
+                                      ));
                               for (var lng in controller.languages) {
                                 if (lng.name ==
                                         controller.languageList[controller.lng]
@@ -75,7 +85,16 @@ class _MatchActionsState extends State<MatchActions> {
                           ),
                           FloatingActionButton.extended(
                             label: const Text("Recusar"),
-                            onPressed: () {
+                            onPressed: () async {
+                              await showDialog(
+                                  context: context,
+                                  builder: (_) => ConfirmationDialog(
+                                        title: "Você recusou:",
+                                        name: controller
+                                            .languageList[controller.lng].name,
+                                        image: controller
+                                            .languageList[controller.lng].image,
+                                      ));
                               for (var lng in controller.languages) {
                                 if (lng.name ==
                                         controller.languageList[controller.lng]
