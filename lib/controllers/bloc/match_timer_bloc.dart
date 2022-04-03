@@ -7,7 +7,8 @@ import 'package:match_code/controllers/ticker.dart';
 
 class MatchTimerBloc extends Bloc<MatchTimerEvent, MatchTimerState> {
   final Ticker _ticker;
-  static const int _duration = 30;
+  static const int _duration = 3;
+  late dynamic lostLanguage = 0;
 
   StreamSubscription<int>? _tickerSubscription;
 
@@ -16,6 +17,7 @@ class MatchTimerBloc extends Bloc<MatchTimerEvent, MatchTimerState> {
         super(const MatchTimerStartState(_duration)) {
     on<MatchTimerStartEvent>(_onStart);
     on<MatchTimerCounterEvent>(_onCount);
+    on<MatchTimerTickedEvent>(_onTicked);
   }
 
   @override
@@ -28,7 +30,7 @@ class MatchTimerBloc extends Bloc<MatchTimerEvent, MatchTimerState> {
     emit(const MatchTimerStartState(_duration));
     _tickerSubscription?.cancel();
     _tickerSubscription = _ticker
-        .tick(ticks: _duration)
+        .tick(ticks: 3)
         .listen((duration) => add(MatchTimerTickedEvent(duration: duration)));
   }
 
@@ -36,7 +38,23 @@ class MatchTimerBloc extends Bloc<MatchTimerEvent, MatchTimerState> {
     emit(const MatchTimerCounterState(_duration));
     _tickerSubscription?.cancel();
     _tickerSubscription = _ticker
-        .tick(ticks: 10)
+        .tick(ticks: 1)
         .listen((duration) => add(MatchTimerTickedEvent(duration: duration)));
+  }
+
+  void _onTicked(MatchTimerTickedEvent event, Emitter<MatchTimerState> emit) {
+    if (event.duration == 0 &&
+        state is MatchTimerStartState &&
+        lostLanguage != null) {
+      _tickerSubscription = _ticker.tick(ticks: 5).listen(
+          (duration) => add(MatchTimerCounterEvent(duration: duration)));
+    } else if (event.duration == 0 &&
+        state is MatchTimerCounterState &&
+        lostLanguage != null) {
+      lostLanguage.state = "Lost";
+      _tickerSubscription = _ticker
+          .tick(ticks: 3)
+          .listen((duration) => add(MatchTimerStartEvent(duration: duration)));
+    }
   }
 }

@@ -1,7 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:match_code/pages/home_page.dart';
-
 import 'app_widget.dart';
 
 void main() {
@@ -33,7 +31,7 @@ class _AppFirebaseState extends State<AppFirebase> {
               ),
             );
           } else if (snapshot.connectionState == ConnectionState.done) {
-            return AppWidget();
+            return const AppWidget();
           } else {
             return const Material(
               child: Center(

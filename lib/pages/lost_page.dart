@@ -27,10 +27,10 @@ class LostPage extends StatelessWidget {
           child: ListView.separated(
             scrollDirection: Axis.vertical,
             itemCount: lostList.length,
-            separatorBuilder: (_, __) => Divider(),
+            separatorBuilder: (_, __) => const Divider(),
             itemBuilder: (BuildContext context, int language) {
               return ListTile(
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12))),
                 leading: Image.asset(lostList[language].icon),
                 title: Text(lostList[language].name),

@@ -18,11 +18,11 @@ class AppWidget extends StatelessWidget {
               primary: AppColors.primary, secondary: AppColors.secondary)),
       initialRoute: "/splash",
       routes: {
-        "/splash": (context) => SplashPage(),
+        "/splash": (context) => const SplashPage(),
         "/home": (context) => HomePage(
               user: ModalRoute.of(context)!.settings.arguments as UserModel,
             ),
-        "/login": (context) => LoginPage(),
+        "/login": (context) => const LoginPage(),
       },
     );
   }
