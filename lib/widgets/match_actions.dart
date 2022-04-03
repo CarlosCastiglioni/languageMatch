@@ -1,11 +1,9 @@
-import 'dart:math';
 export '../controllers/bloc/match_timer_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:match_code/controllers/bloc/match_timer_bloc.dart';
 import 'package:match_code/controllers/bloc/match_timer_event.dart';
 import 'package:match_code/controllers/bloc/match_timer_state.dart';
-import '../repository/languages_repository.dart';
 import '../shared/themes/app_colors.dart';
 import '../shared/themes/app_text_styles.dart';
 
@@ -17,35 +15,12 @@ class MatchActions extends StatefulWidget {
 }
 
 class _MatchActionsState extends State<MatchActions> {
-  final languages = LanguagesRepository.table;
-
-  @override
-  void initState() {
-    setTimer(context);
-    super.initState();
-  }
-
-  void setTimer(BuildContext context) {
-    context.read<MatchTimerBloc>().add(const MatchTimerStartEvent(duration: 3));
-  }
-
   @override
   Widget build(BuildContext context) {
+    final controller = BlocProvider.of<MatchTimerBloc>(context);
     return BlocBuilder<MatchTimerBloc, MatchTimerState>(
       buildWhen: (prev, state) => prev.runtimeType != state.runtimeType,
       builder: (context, state) {
-        final pendingList = [];
-        for (var lng in languages) {
-          if (lng.state == "Pending") {
-            pendingList.add(lng);
-          }
-        }
-        final random = Random();
-        final language =
-            pendingList.isNotEmpty ? random.nextInt(pendingList.length) : 0;
-        final controller = BlocProvider.of<MatchTimerBloc>(context);
-        controller.lostLanguage =
-            pendingList.isNotEmpty ? pendingList[language] : null;
         return Scaffold(
           body: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -53,22 +28,23 @@ class _MatchActionsState extends State<MatchActions> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    if (pendingList.isEmpty) ...[
+                    if (controller.languageList.isEmpty) ...[
                       Text(
                         "Você já utilizou todas as linguagens disponíveis!",
                         style: TextStyles.buttonGrey,
                       )
                     ],
                     if (state is MatchTimerCounterState &&
-                        pendingList.isNotEmpty) ...[
+                        controller.languageList.isNotEmpty) ...[
                       Text(
-                        pendingList[language].name,
+                        controller.languageList[controller.lng].name,
                         style: TextStyles.titleHome,
                       ),
                       const SizedBox(
                         height: 20,
                       ),
-                      Image.asset(pendingList[language].image),
+                      Image.asset(
+                          controller.languageList[controller.lng].image),
                       const SizedBox(
                         height: 15,
                       ),
@@ -78,9 +54,11 @@ class _MatchActionsState extends State<MatchActions> {
                           FloatingActionButton.extended(
                             label: const Text("Aceitar"),
                             onPressed: () {
-                              for (var lng in languages) {
-                                if (lng.name == pendingList[language].name &&
-                                    pendingList.isNotEmpty) {
+                              for (var lng in controller.languages) {
+                                if (lng.name ==
+                                        controller.languageList[controller.lng]
+                                            .name &&
+                                    controller.languageList.isNotEmpty) {
                                   lng.state = "Accepted";
                                 }
                               }
@@ -95,9 +73,11 @@ class _MatchActionsState extends State<MatchActions> {
                           FloatingActionButton.extended(
                             label: const Text("Recusar"),
                             onPressed: () {
-                              for (var lng in languages) {
-                                if (lng.name == pendingList[language].name &&
-                                    pendingList.isNotEmpty) {
+                              for (var lng in controller.languages) {
+                                if (lng.name ==
+                                        controller.languageList[controller.lng]
+                                            .name &&
+                                    controller.languageList.isNotEmpty) {
                                   lng.state = "Refused";
                                 }
                               }
@@ -110,7 +90,7 @@ class _MatchActionsState extends State<MatchActions> {
                       )
                     ],
                     if (state is MatchTimerStartState &&
-                        pendingList.isNotEmpty) ...[
+                        controller.languageList.isNotEmpty) ...[
                       Text(
                         "Não há linguagens pendentes!",
                         style: TextStyles.buttonGrey,

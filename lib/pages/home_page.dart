@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:match_code/pages/accepted_page.dart';
 import 'package:match_code/pages/lost_page.dart';
 import 'package:match_code/pages/pending_page.dart';
@@ -6,6 +7,8 @@ import 'package:match_code/pages/profile_page.dart';
 import 'package:match_code/pages/refused_page.dart';
 import 'package:match_code/shared/themes/app_colors.dart';
 
+import '../controllers/bloc/match_timer_bloc.dart';
+import '../controllers/bloc/match_timer_event.dart';
 import '../models/user_model.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,6 +25,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    setTimer(context);
     super.initState();
     pc = PageController(initialPage: currentPage);
   }
@@ -32,8 +36,17 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void setTimer(BuildContext context) {
+    context.read<MatchTimerBloc>().add(const MatchTimerStartEvent(duration: 3));
+  }
+
   @override
   Widget build(BuildContext context) {
+    final controller = BlocProvider.of<MatchTimerBloc>(context);
+    controller.lostLanguage = controller.languageList.isNotEmpty
+        ? controller.languageList[controller.lng]
+        : null;
+
     return Scaffold(
       body: PageView(
         onPageChanged: setPage,

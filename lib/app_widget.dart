@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:match_code/controllers/bloc/match_timer_state.dart';
+import 'package:match_code/widgets/match_actions.dart';
+import 'controllers/ticker.dart';
 import 'models/user_model.dart';
 import 'pages/home_page.dart';
 import 'pages/login_page.dart';
@@ -19,8 +23,16 @@ class AppWidget extends StatelessWidget {
       initialRoute: "/splash",
       routes: {
         "/splash": (context) => const SplashPage(),
-        "/home": (context) => HomePage(
-              user: ModalRoute.of(context)!.settings.arguments as UserModel,
+        "/home": (context) => BlocProvider(
+              create: (context) => MatchTimerBloc(ticker: const Ticker()),
+              child: BlocBuilder<MatchTimerBloc, MatchTimerState>(
+                builder: (context, state) {
+                  return HomePage(
+                    user:
+                        ModalRoute.of(context)!.settings.arguments as UserModel,
+                  );
+                },
+              ),
             ),
         "/login": (context) => const LoginPage(),
       },

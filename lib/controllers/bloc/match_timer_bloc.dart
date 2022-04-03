@@ -1,15 +1,20 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:match_code/controllers/bloc/match_timer_event.dart';
 import 'package:match_code/controllers/bloc/match_timer_state.dart';
 import 'package:match_code/controllers/ticker.dart';
 
+import '../../repository/languages_repository.dart';
+
 class MatchTimerBloc extends Bloc<MatchTimerEvent, MatchTimerState> {
   final Ticker _ticker;
   static const int _duration = 3;
   late dynamic lostLanguage = 0;
-
+  late int lng = 0;
+  final languageList = [];
+  final languages = LanguagesRepository.table;
   StreamSubscription<int>? _tickerSubscription;
 
   MatchTimerBloc({required Ticker ticker})
@@ -43,6 +48,15 @@ class MatchTimerBloc extends Bloc<MatchTimerEvent, MatchTimerState> {
   }
 
   void _onTicked(MatchTimerTickedEvent event, Emitter<MatchTimerState> emit) {
+    final random = Random();
+    final language =
+        languageList.isNotEmpty ? random.nextInt(languageList.length) : 0;
+    lng = language;
+    for (var lng in languages) {
+      if (lng.state == "Pending") {
+        languageList.add(lng);
+      }
+    }
     if (event.duration == 0 &&
         state is MatchTimerStartState &&
         lostLanguage != null) {
@@ -55,6 +69,8 @@ class MatchTimerBloc extends Bloc<MatchTimerEvent, MatchTimerState> {
       _tickerSubscription = _ticker
           .tick(ticks: 3)
           .listen((duration) => add(MatchTimerStartEvent(duration: duration)));
+    } else if (event.duration == 0 && languageList.isEmpty) {
+      _tickerSubscription?.cancel();
     }
   }
 }

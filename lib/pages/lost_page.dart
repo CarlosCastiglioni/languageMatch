@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../repository/languages_repository.dart';
+import '../controllers/bloc/match_timer_bloc.dart';
 import '../widgets/custom_app_bar.dart';
 
 class LostPage extends StatelessWidget {
-  LostPage({Key? key}) : super(key: key);
-  final languages = LanguagesRepository.table;
+  const LostPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = BlocProvider.of<MatchTimerBloc>(context);
     final lostList = [];
-    for (var lng in languages) {
+    for (var lng in controller.languages) {
       if (lng.state == "Lost") {
         lostList.add(lng);
       }

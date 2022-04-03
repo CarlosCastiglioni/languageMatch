@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../repository/languages_repository.dart';
+import '../controllers/bloc/match_timer_bloc.dart';
 import '../widgets/custom_app_bar.dart';
 
 class AcceptedPage extends StatelessWidget {
-  AcceptedPage({Key? key}) : super(key: key);
-  final languages = LanguagesRepository.table;
+  const AcceptedPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = BlocProvider.of<MatchTimerBloc>(context);
     final acceptedList = [];
-    for (var lng in languages) {
+    for (var lng in controller.languages) {
       if (lng.state == "Accepted") {
         acceptedList.add(lng);
       }
@@ -27,7 +28,7 @@ class AcceptedPage extends StatelessWidget {
         child: ListView.separated(
           scrollDirection: Axis.vertical,
           itemCount: acceptedList.length,
-          separatorBuilder: (_, __) => Divider(),
+          separatorBuilder: (_, __) => const Divider(),
           itemBuilder: (BuildContext context, int language) {
             return ListTile(
               shape: const RoundedRectangleBorder(
