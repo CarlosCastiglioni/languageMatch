@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:math';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:match_code/controllers/bloc/match_timer_event.dart';
 import 'package:match_code/controllers/bloc/match_timer_state.dart';
 import 'package:match_code/controllers/ticker.dart';
-
+import '../../api/notification_api.dart';
 import '../../repository/languages_repository.dart';
 
 class MatchTimerBloc extends Bloc<MatchTimerEvent, MatchTimerState> {
@@ -50,6 +49,10 @@ class MatchTimerBloc extends Bloc<MatchTimerEvent, MatchTimerState> {
   }
 
   void _onCount(MatchTimerCounterEvent event, Emitter<MatchTimerState> emit) {
+    NotificationApi.showNotification(
+        title: "Linguagem Disponível",
+        body:
+            "Corra! Você tem 30 segundos para dar match com uma nova linguagem!");
     emit(const MatchTimerCounterState(_counterDuration));
     _tickerSubscription?.cancel();
     _tickerSubscription = _ticker

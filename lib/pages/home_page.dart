@@ -6,7 +6,6 @@ import 'package:match_code/pages/pending_page.dart';
 import 'package:match_code/pages/profile_page.dart';
 import 'package:match_code/pages/refused_page.dart';
 import 'package:match_code/shared/themes/app_colors.dart';
-
 import '../controllers/bloc/match_timer_bloc.dart';
 import '../controllers/bloc/match_timer_event.dart';
 import '../models/user_model.dart';
@@ -46,6 +45,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final controller = BlocProvider.of<MatchTimerBloc>(context);
+
     controller.lostLanguage = controller.languageList.isNotEmpty
         ? controller.languageList[controller.lng]
         : null;

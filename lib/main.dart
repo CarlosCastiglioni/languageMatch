@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'api/notification_api.dart';
 import 'app_widget.dart';
 
 void main() {
@@ -18,6 +19,8 @@ class _AppFirebaseState extends State<AppFirebase> {
 
   @override
   Widget build(BuildContext context) {
+    NotificationApi.init();
+
     return FutureBuilder(
         future: _initialization,
         builder: (context, snapshot) {
