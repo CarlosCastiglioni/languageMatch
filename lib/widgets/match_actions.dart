@@ -33,7 +33,7 @@ class _MatchActionsState extends State<MatchActions> {
                   children: [
                     if (controller.languageList.isEmpty) ...[
                       Text(
-                        "Você já utilizou todas as linguagens disponíveis!",
+                        "No more stacks!",
                         style: TextStyles.buttonGrey,
                       )
                     ],
@@ -55,12 +55,12 @@ class _MatchActionsState extends State<MatchActions> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           FloatingActionButton.extended(
-                            label: const Text("Aceitar"),
+                            label: const Text("Accept"),
                             onPressed: () async {
                               await showDialog(
                                   context: context,
                                   builder: (_) => ConfirmationDialog(
-                                        title: "Você deu match com:",
+                                        title: "You matched with:",
                                         name: controller
                                             .languageList[controller.lng].name,
                                         image: controller
@@ -84,12 +84,12 @@ class _MatchActionsState extends State<MatchActions> {
                             width: 15,
                           ),
                           FloatingActionButton.extended(
-                            label: const Text("Recusar"),
+                            label: const Text("Decline"),
                             onPressed: () async {
                               await showDialog(
                                   context: context,
                                   builder: (_) => ConfirmationDialog(
-                                        title: "Você recusou:",
+                                        title: "You declined:",
                                         name: controller
                                             .languageList[controller.lng].name,
                                         image: controller
@@ -100,7 +100,7 @@ class _MatchActionsState extends State<MatchActions> {
                                         controller.languageList[controller.lng]
                                             .name &&
                                     controller.languageList.isNotEmpty) {
-                                  lng.state = "Refused";
+                                  lng.state = "Declined";
                                 }
                               }
                               context.read<MatchTimerBloc>().add(
@@ -115,7 +115,7 @@ class _MatchActionsState extends State<MatchActions> {
                     if (state is MatchTimerStartState &&
                         controller.languageList.isNotEmpty) ...[
                       Text(
-                        "Não há linguagens pendentes!",
+                        "No pending stacks!",
                         style: TextStyles.buttonGrey,
                       )
                     ],

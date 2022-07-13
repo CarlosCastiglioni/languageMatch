@@ -6,21 +6,20 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.16.2 <3.0.0"
+  sdk: '>=2.16.2 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  firebase_core: ^1.13.1
-  firebase_auth: ^3.3.11
-  shared_preferences: ^2.0.13
-  google_fonts: ^2.3.1
-  google_sign_in: ^5.2.4
+  firebase_core: ^1.19.2
+  firebase_auth: ^3.4.2
+  shared_preferences: ^2.0.15
+  google_fonts: ^3.0.1
+  google_sign_in: ^5.4.0
   flutter_bloc: ^8.0.1
   equatable: ^2.0.3
-  flutter_local_notifications: ^9.4.0
-  rxdart: ^0.27.3
-
+  flutter_local_notifications: ^9.7.0
+  rxdart: ^0.27.4
 
   cupertino_icons: ^1.0.2
 
@@ -31,8 +30,7 @@ dev_dependencies:
   flutter_lints: ^1.0.0
 
 flutter:
-
   uses-material-design: true
-  
+
   assets:
     - assets/images/

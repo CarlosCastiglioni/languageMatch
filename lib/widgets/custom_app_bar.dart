@@ -36,7 +36,7 @@ class CustomAppBar extends StatelessWidget {
                       loginController.signOut(context);
                     },
                     child: Text(
-                      "Sair",
+                      "Logout",
                       style: TextStyles.logout,
                     )),
               ],

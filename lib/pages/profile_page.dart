@@ -20,10 +20,10 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(180),
         child: CustomAppBar(
-            title1: "Olá, ",
+            title1: "Hello, ",
             title2: widget.user.name,
             photo: widget.user.photoURL!,
-            subtitle: "Veja abaixo todas as linguagens disponíveis"),
+            subtitle: "See the available stacks below"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -41,7 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   );
                 },
               )
-            : const Text("Não há registros"),
+            : const Text("No register"),
       ),
     );
   }

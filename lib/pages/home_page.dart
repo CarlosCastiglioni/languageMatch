@@ -74,19 +74,19 @@ class _HomePageState extends State<HomePage> {
                 selectedIcon: Icon(Icons.view_list)),
             NavigationDestination(
                 icon: Icon(Icons.watch_later_outlined),
-                label: "Pendentes",
+                label: "Pending",
                 selectedIcon: Icon(Icons.watch_later)),
             NavigationDestination(
                 icon: Icon(Icons.thumb_up_alt_outlined),
-                label: "Aceitas",
+                label: "Accepted",
                 selectedIcon: Icon(Icons.thumb_up_alt)),
             NavigationDestination(
                 icon: Icon(Icons.thumb_down_alt_outlined),
-                label: "Recusadas",
+                label: "Declined",
                 selectedIcon: Icon(Icons.thumb_down_alt)),
             NavigationDestination(
                 icon: Icon(Icons.cancel_outlined),
-                label: "Perdidas",
+                label: "Missed",
                 selectedIcon: Icon(Icons.cancel)),
           ],
           selectedIndex: currentPage,

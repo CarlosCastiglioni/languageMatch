@@ -17,8 +17,8 @@ class LostPage extends StatelessWidget {
     return Scaffold(
         appBar: PreferredSize(
           child: CustomAppBar(
-              title1: "Solicitações Perdidas",
-              subtitle: "Veja abaixo suas solicitações perdidas"),
+              title1: "Missed Stacks",
+              subtitle: "See your missed stacks below"),
           preferredSize: const Size.fromHeight(180),
         ),
         body: Padding(

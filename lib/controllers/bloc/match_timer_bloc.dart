@@ -50,9 +50,8 @@ class MatchTimerBloc extends Bloc<MatchTimerEvent, MatchTimerState> {
 
   void _onCount(MatchTimerCounterEvent event, Emitter<MatchTimerState> emit) {
     NotificationApi.showNotification(
-        title: "Linguagem Disponível",
-        body:
-            "Corra! Você tem 30 segundos para dar match com uma nova linguagem!");
+        title: "Stack available",
+        body: "Run! You have 30 seconds to match a new stack!");
     emit(const MatchTimerCounterState(_counterDuration));
     _tickerSubscription?.cancel();
     _tickerSubscription = _ticker

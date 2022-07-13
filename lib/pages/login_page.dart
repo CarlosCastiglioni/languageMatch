@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding:
                         const EdgeInsets.only(top: 30, left: 70.0, right: 70),
                     child: Text(
-                      'Match Code\n\nConecte-se aos códigos!',
+                      'Match Code\n\nConnect to Codes!',
                       textAlign: TextAlign.center,
                       style: TextStyles.titleHome,
                     ),

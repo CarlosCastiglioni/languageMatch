@@ -28,7 +28,7 @@ class _AppFirebaseState extends State<AppFirebase> {
             return const Material(
               child: Center(
                 child: Text(
-                  "Não foi possível inicializar o Firebase",
+                  "Firebase not available",
                   textDirection: TextDirection.ltr,
                 ),
               ),

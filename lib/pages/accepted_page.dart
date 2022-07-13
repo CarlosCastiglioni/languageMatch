@@ -17,8 +17,8 @@ class AcceptedPage extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         child: CustomAppBar(
-            title1: "Solicitações Aceitas",
-            subtitle: "Veja abaixo suas solicitações aceitas"),
+            title1: "Accepted stacks",
+            subtitle: "See the accepted stacks ​​below"),
         preferredSize: const Size.fromHeight(180),
       ),
       body: Padding(

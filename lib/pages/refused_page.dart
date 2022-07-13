@@ -10,14 +10,14 @@ class RefusedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = BlocProvider.of<MatchTimerBloc>(context);
     final refusedList = controller.languages
-        .where((element) => element.state == "Refused")
+        .where((element) => element.state == "Declined")
         .toList();
 
     return Scaffold(
       appBar: PreferredSize(
         child: CustomAppBar(
-            title1: "Solicitações Recusadas",
-            subtitle: "Veja abaixo suas solicitações recusadas"),
+            title1: "Declined Stacks",
+            subtitle: "See your declined stacks below"),
         preferredSize: const Size.fromHeight(180),
       ),
       body: Padding(

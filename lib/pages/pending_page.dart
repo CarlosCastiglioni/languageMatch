@@ -12,8 +12,8 @@ class PendingPage extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         child: CustomAppBar(
-            title1: "Solicitações Pendentes",
-            subtitle: "Veja abaixo suas solicitações pendentes"),
+            title1: "Pending Stacks",
+            subtitle: "See your pending stacks below"),
         preferredSize: const Size.fromHeight(180),
       ),
       body: const MatchActions(),
