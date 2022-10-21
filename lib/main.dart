@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'api/notification_api.dart';
 import 'app_widget.dart';
+import 'firebase_options.dart';
 
 void main() {
   runApp(const AppFirebase());
@@ -15,7 +16,9 @@ class AppFirebase extends StatefulWidget {
 }
 
 class _AppFirebaseState extends State<AppFirebase> {
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   @override
   Widget build(BuildContext context) {
